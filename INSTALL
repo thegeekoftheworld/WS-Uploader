@@ -3,12 +3,11 @@ sudo apt update
 sudo apt-get install -y --no-install-recommends build-essential pkg-config libcurl4-openssl-dev libmosquitto-dev a-certificates
 
 Build:
-gcc -O2 -Wall weather_to_ha.c -o weather_to_ha -lcurl -lmosquitto -lcjson
+gcc -O2 -Wall ws-uploader.c -o ws-uploader -lcurl -lmosquitto -lcjson
 
 Run: 
 
-./weatheruploader -c ./config.ini
+./ws-uploader -c ./config.ini
 
  Use -d for debugging output, and -h for help. The config.ini file should be in the same directory as the executable, or you can specify a different path with -c.
 
- 

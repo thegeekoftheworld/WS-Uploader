@@ -47,7 +47,7 @@ This is designed to run as a small always-on Linux service.
 From the project directory:
 
 ```bash
-gcc -O2 -Wall -Wextra -o ws-uploader w.c -lcurl -lmosquitto -lm
+gcc -O2 -Wall -Wextra -o ws-uploader ws-uploader.c -lcurl -lmosquitto -lm
 ```
 
 (If you’re using a different filename, adjust accordingly.)
@@ -56,7 +56,7 @@ gcc -O2 -Wall -Wextra -o ws-uploader w.c -lcurl -lmosquitto -lm
 
 ## Recommended install layout
 
-- Binary: `/opt/ws-uploader/uploader`
+- Binary: `/opt/ws-uploader/ws-uploader`
 - Config: `/etc/ws-uploader/config.ini`
 - Service: `systemd` unit `ws-uploader.service`
 
@@ -64,7 +64,7 @@ Manual install example:
 
 ```bash
 sudo mkdir -p /opt/ws-uploader /etc/ws-uploader
-sudo install -m 0755 ./ws-uploader /opt/ws-uploader/uploader
+sudo install -m 0755 ./ws-uploader /opt/ws-uploader/ws-uploader
 sudo install -m 0644 ./config.ini /etc/ws-uploader/config.ini
 ```
 
@@ -115,13 +115,13 @@ The parser may accept `true/false`, but `1/0` is the safest.
 ## Running
 
 ```bash
-/opt/ws-uploader/uploader -c /etc/ws-uploader/config.ini
+/opt/ws-uploader/ws-uploader -c /etc/ws-uploader/config.ini
 ```
 
 Debug mode:
 
 ```bash
-/opt/ws-uploader/uploader -c /etc/ws-uploader/config.ini -d
+/opt/ws-uploader/ws-uploader -c /etc/ws-uploader/config.ini -d
 ```
 
 What you should see in debug:
@@ -219,7 +219,7 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/opt/ws-uploader/uploader -c /etc/ws-uploader/config.ini
+ExecStart=/opt/ws-uploader/ws-uploader -c /etc/ws-uploader/config.ini
 Restart=always
 RestartSec=5
 User=root
@@ -264,7 +264,7 @@ gcc -O2 -Wall -Wextra -o ws-uploader w.c -lcurl -lmosquitto -lm
 ./ws-uploader -c ./config.ini -d
 
 # Install
-sudo install -m 0755 ./ws-uploader /opt/ws-uploader/uploader
+sudo install -m 0755 ./ws-uploader /opt/ws-uploader/ws-uploader
 sudo install -m 0644 ./config.ini /etc/ws-uploader/config.ini
 
 # Service
